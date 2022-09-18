@@ -1,0 +1,21 @@
+---
+name: Demo Expressions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  demo1:
+    strategy:
+      matrix:
+        version: ['1.5', '2.6', '2.7', '2.8', '2.9']
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Version 1'
+        if: startsWith(matrix.version, '1.')
+        run: echo ${{ matrix.version }}
+      - name: 'Version 2'
+        if: startsWith(matrix.version, '2.')
+        run: echo ${{ matrix.version }}
